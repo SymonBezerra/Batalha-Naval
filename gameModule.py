@@ -184,21 +184,7 @@ if __name__ == "__main__":
                 print("CPU is going to make a shot...\n")
                 boardModule.print_board_open(grid_player, len(grid_player))
                 sleep(1.5)
-                # random coord
-                # if auto_attempts == 0:
-                #     cpu_attempt = cpu_autoshot()
-                #     cpu_aim = grid_player[cpu_attempt[0]][cpu_attempt[1]]
-                # else:
-                #     auto_attempts -= 1
-                #     if cpu_direction == 0 and cpu_attempt[0] - 1 >= 0:
-                #         cpu_attempt = [cpu_attempt[0] - 1, cpu_attempt[1]]
-                #     elif cpu_direction == 1 and cpu_attempt[0] + 1 < len(grid_player):
-                #         cpu_attempt = [cpu_attempt[0] + 1, cpu_attempt[1]]
-                #     elif cpu_direction == 2 and cpu_attempt[1] - 1 >= 0:
-                #         cpu_attempt = [cpu_attempt[0], cpu_attempt[1] - 1]
-                #     elif cpu_direction == 3 and cpu_attempt[1] + 1 < len(grid_player): 
-                #             cpu_attempt = [cpu_attempt[0], cpu_attempt[1] + 1]
-                #     cpu_aim = grid_player[cpu_attempt[0]][cpu_attempt[1]]
+
                 if len(cpu_lasthits) == 0:
                     cpu_attempt = None
                 else:
