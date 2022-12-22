@@ -259,9 +259,9 @@ def cpu_unfinished_business(grid: list, last_hit: str) -> tuple:
                 if cell > 0:
                     ship_tags.append(grid[ship[cell][0]][ship[cell][1]])
                     ship_coordinates.append(ship[cell])
-            if ship_tags.count("H") < len(ship) - 1 and ship_tags.count("H") > 0:
-                return ship_coordinates[ship_tags.index(last_hit)]
-            elif ship_tags.count("H") == len(ship) - 1:
+            if ship_tags.count("H") < len(ship) and ship_tags.count("H") > 0:
+                return ship_coordinates[cell[ship_tags.index(last_hit)]]
+            elif ship_tags.count("H") == len(ship):
                 return None
         
         # return False
