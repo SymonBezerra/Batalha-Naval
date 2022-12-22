@@ -55,8 +55,8 @@ def player_wins () -> bool:
     return False
 
 # cpu random shot
-def cpu_randomshot () -> list:
-    return [randint(0, grid_size - 1), randint(0, grid_size - 1)]
+def cpu_randomshot (remaining_shots: list) -> tuple:
+    return remaining_shots.pop(randint(0, len(remaining_shots) - 1))
 
 # if the CPU hits a ship, this will say the direction it must go
 # def cpu_smartshot_direction (lastshot: list, ship: str) -> int:
@@ -75,6 +75,7 @@ if __name__ == "__main__":
     cpu_ships = 0
 
     # CPU auto attempts (AI)
+    cpu_remaining_hits = []
     cpu_lasthits = []
     # cpu_direction = 0
 
@@ -104,6 +105,11 @@ if __name__ == "__main__":
         except ValueError:
             boardModule.clear_console()
             print("Enter a numeric value!\n")
+
+    # setting up CPU's random shots
+    for i in range(DIFFICULTY[game_difficulty]):
+        for j in range(DIFFICULTY[game_difficulty]):
+            cpu_remaining_hits.append((i,j))
 
     # now to start the grids
     grid_start(grid_cpu, game_difficulty, True)
@@ -190,7 +196,7 @@ if __name__ == "__main__":
                 else:
                     cpu_attempt = placementModule.cpu_unfinished_business(grid_player, cpu_lasthits[len(cpu_lasthits) - 1])
                 if cpu_attempt == None:
-                    cpu_aim = cpu_randomshot()
+                    cpu_aim = cpu_randomshot(cpu_remaining_hits)
                 else:
                     cpu_aim = cpu_attempt
                 cpu_shot = grid_player[cpu_aim[0]][cpu_aim[1]]
@@ -205,7 +211,7 @@ if __name__ == "__main__":
                     boardModule.print_board_open(grid_player, len(grid_player))
                     sleep(1.5)
                     placementModule.check_destroyed_ships(grid_player, True)
-                elif cpu_shot in ("M", "H"):
+                elif cpu_shot in ("M", "H"):    
                     pass # no need, since the smart shots will already cover to not hit M's or H's
                 elif cpu_shot in (None, 0):
                     grid_player[cpu_aim[0]][cpu_aim[1]] = "M"
