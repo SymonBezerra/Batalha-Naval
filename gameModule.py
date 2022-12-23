@@ -211,6 +211,8 @@ if __name__ == "__main__":
                     cpu_aim = placementModule.adjacent_coordinates(directions[len(directions) - 1],
                                                                 cpu_lasthits[len(cpu_lasthits) - 1],
                                                                 DIFFICULTY[game_difficulty])
+                    if cpu_aim == cpu_lasthits[len(cpu_lasthits) - 1]:
+                        directions.pop()
                 else:
                     cpu_aim = cpu_randomshot()
                     directions = []
