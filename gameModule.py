@@ -193,7 +193,6 @@ if __name__ == "__main__":
                                                                         directions[len(directions) - 1])
                 if not cpu_attempt[0] and cpu_attempt[1]:
                     cpu_aim = cpu_randomshot()
-                    directions = []
                 elif cpu_attempt[0] and not cpu_attempt[1]:
                     cpu_aim = placementModule.adjacent_coordinates(directions[len(directions) - 1],
                                                                 cpu_lasthits[len(cpu_lasthits) - 1],
