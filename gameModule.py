@@ -222,7 +222,6 @@ if __name__ == "__main__":
                 elif cpu_shot in ("M", "H"):
                     pass # no need, since the smart shots will already cover to not hit M's or H's
                 elif cpu_shot in (None, 0):
-                    auto_attempts = 0
                     grid_player[cpu_aim[0]][cpu_aim[1]] = "M"
                     boardModule.clear_console()
                     print(f"CPU has missed!\n")
