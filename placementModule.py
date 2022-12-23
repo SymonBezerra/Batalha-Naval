@@ -248,11 +248,31 @@ def check_destroyed_ships(grid: list, open: bool) -> None:
             remove_ship_from_memory(ships_memory, ships_memory.index(ship))
             break
 
-def cpu_unfinished_business(grid: list, last_hit: str) -> tuple:
+# def cpu_unfinished_business(grid: list, last_hit: str) -> tuple:
+#     for ship in ships_memory:
+#         if 0 not in ship:
+#             pass
+#         else:
+#             ship_tags = []
+#             ship_coordinates = []
+#             for cell in range(len(ship)):
+#                 if cell > 0:
+#                     ship_tags.append(grid[ship[cell][0]][ship[cell][1]])
+#                     ship_coordinates.append(ship[cell])
+#             if ship_tags.count("H") < len(ship) - 1 and ship_tags.count("H") > 0:
+#                 return ship_coordinates[ship_tags.index(last_hit)]
+#             elif ship_tags.count("H") == len(ship) - 1:
+#                 return None
+        
+#         # return False
+#     return None
+
+def cpu_unfinished_business(grid: list, last_hit: tuple, direction) -> tuple:
+    # ship has blocks left, ship has been destroyed
     for ship in ships_memory:
-        if 0 not in ship:
-            pass
-        else:
+        # if 0 not in ship:
+        #     pass
+        # else:
             ship_tags = []
             ship_coordinates = []
             for cell in range(len(ship)):
@@ -260,12 +280,23 @@ def cpu_unfinished_business(grid: list, last_hit: str) -> tuple:
                     ship_tags.append(grid[ship[cell][0]][ship[cell][1]])
                     ship_coordinates.append(ship[cell])
             if ship_tags.count("H") < len(ship) - 1 and ship_tags.count("H") > 0:
-                return ship_coordinates[ship_tags.index(last_hit)]
+                return (True, False)
             elif ship_tags.count("H") == len(ship) - 1:
-                return None
+                return (False, True)
         
-        # return False
-    return None
+    return (False, False)
+
+def adjacent_coordinates (direction: int, coord: tuple, board_size: int) -> tuple:
+    if direction == 0 and coord[0] - 1 >= 0:
+        return (coord[0] - 1, coord[1])
+    elif direction == 1 and coord[0] + 1 < board_size:
+        return (coord[0] + 1, coord[1])
+    elif direction == 2 and coord[1] - 1 >= 0:
+        return (coord[0], coord[1] - 1)
+    elif direction == 3 and coord[1] + 1 < board_size:
+        return (coord[0], coord[1] + 1)
+    return coord
+
 
 
 def show_collision_blocks(grid: list, ship: list, open: bool) -> None:
