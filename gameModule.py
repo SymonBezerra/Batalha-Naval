@@ -200,8 +200,12 @@ if __name__ == "__main__":
                     if cpu_aim in ("M", "H"):
                         directions.pop()
 
-                cpu_shot = grid_player[cpu_aim[0]][cpu_aim[1]]
 
+                elif not cpu_attempt[0] and not cpu_attempt[1]:
+                    cpu_aim = cpu_randomshot()
+                    directions = []
+
+                cpu_shot = grid_player[cpu_aim[0]][cpu_aim[1]]
                 if cpu_shot in ("R", "B", "D", "C"):
                     if len(directions) == 0:
                         directions = [0,1,2,3]
