@@ -191,7 +191,7 @@ if __name__ == "__main__":
                     cpu_attempt = placementModule.cpu_unfinished_business(grid_player, 
                                                                         cpu_lasthits[len(cpu_lasthits) - 1],
                                                                         directions[len(directions) - 1])
-                if not cpu_attempt[0] and not cpu_attempt[1]:
+                if not cpu_attempt[0] and cpu_attempt[1]:
                     cpu_aim = cpu_randomshot()
                     directions = []
                 elif cpu_attempt[0] and not cpu_attempt[1]:
